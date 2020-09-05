@@ -19,7 +19,7 @@ var input_name = window.value || "Kristopher"
 
 var input = {"name": input_name};
 Algorithmia.client("simlkeLskhCPWY3nI+xq75thdMy1")
-  .algo("koverholt/popular_names/0.2.2?timeout=300")
+  .algo("koverholt/PopularNames/1.0.0?timeout=300")
   .pipe(input)
   .then(function(output) {
     var obj = output.result;
