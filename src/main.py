@@ -2,7 +2,7 @@ import os
 import zipfile
 import pandas as pd
 
-df = pd.read_csv("")
+df = pd.read_csv("https://storage.googleapis.com/name-popularity/data.csv")
 
 def get_name_info(input_name):
     name_match = df[df["name"] == input_name]
