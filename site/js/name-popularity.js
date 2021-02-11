@@ -16,59 +16,61 @@ var param = new Vue({
 */
 
 var input_name = window.value || "Kristopher"
-
 var input = {"name": input_name};
-Algorithmia.client("simlkeLskhCPWY3nI+xq75thdMy1")
-  .algo("koverholt/PopularNames/1.0.0?timeout=300")
-  .pipe(input)
-  .then(function(output) {
-    var obj = output.result;
-    var input_name = obj["input_name"];
-    var formatted_name_sum = obj["formatted_name_sum"];
-    var top_year = obj["top_year"];
-    var female_count = obj["female_count"];
-    var female_year = obj["female_year"];
-    var male_count = obj["male_count"];
-    var male_year = obj["male_year"];
 
-  var app = new Vue({
-    el: "#app",
-    data: {
-      input_name: input_name,
-      formatted_name_sum: formatted_name_sum,
-      top_year: top_year,
-    }
-  })
+var xhr = new XMLHttpRequest();
+xhr.open("POST", "https://us-central1-koverholt-apps-304316.cloudfunctions.net/name-popularity");
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.send(JSON.stringify(input));
 
-  var trace1 = {
-    x: male_year,
-    y: male_count,
-    name: "Male",
-    type: "bar"
-  };
+xhr.onload = function () {
+  var obj = JSON.parse(this.response);
+  var input_name = obj["input_name"];
+  var formatted_name_sum = obj["formatted_name_sum"];
+  var top_year = obj["top_year"];
+  var female_count = obj["female_count"];
+  var female_year = obj["female_year"];
+  var male_count = obj["male_count"];
+  var male_year = obj["male_year"];
 
-  var trace2 = {
-    x: female_year,
-    y: female_count,
-    name: "Female",
-    type: "bar"
-  };
+var app = new Vue({
+  el: "#app",
+  data: {
+    input_name: input_name,
+    formatted_name_sum: formatted_name_sum,
+    top_year: top_year,
+  }
+})
 
-  var data = [trace1, trace2];
+var trace1 = {
+  x: male_year,
+  y: male_count,
+  name: "Male",
+  type: "bar"
+};
 
-  var layout = {
-    barmode: "stack",
-    plot_bgcolor: "rgba(0,0,0,0)",
-    paper_bgcolor: "rgba(51,51,51,0)",
-    font: {
-      color: "white",
-    }
-  };
+var trace2 = {
+  x: female_year,
+  y: female_count,
+  name: "Female",
+  type: "bar"
+};
 
-  var config = {
-    'displayModeBar': false
-  };
+var data = [trace1, trace2];
 
-  Plotly.newPlot("chart", data, layout, config);
+var layout = {
+  barmode: "stack",
+  plot_bgcolor: "rgba(0,0,0,0)",
+  paper_bgcolor: "rgba(51,51,51,0)",
+  font: {
+    color: "white",
+  }
+};
 
-});
+var config = {
+  'displayModeBar': false
+};
+
+Plotly.newPlot("chart", data, layout, config);
+
+};
