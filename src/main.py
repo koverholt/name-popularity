@@ -1,5 +1,3 @@
-import os
-import zipfile
 import pandas as pd
 
 df = pd.read_csv("https://storage.googleapis.com/name-popularity/data.csv")
