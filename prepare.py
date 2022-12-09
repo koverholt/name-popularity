@@ -1,4 +1,3 @@
-import Algorithmia
 import os
 import requests
 import zipfile
