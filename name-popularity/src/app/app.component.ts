@@ -13,22 +13,16 @@ export class AppComponent {
   top_year: any;
 
   constructor() {
+
     // URL parameters
 
-    // var param = new Vue({
-    //   created() {
-    //     let uri = window.location.search.substring(1);
-    //     let params = new URLSearchParams(uri);
-    //     window.value = params.get("name");
-    //   },
-    // });
+    let uri = window.location.search.substring(1);
+    let params = new URLSearchParams(uri);
+    var input_name = params.get("name") || "Kristopher"
 
     // Query
 
-    // var input_name = window.value || "Kristopher"
-    // var input = { "name": input_name };
-    var input = { "name": "Kristopher" };
-
+    var input = { "name": input_name };
     var xhr = new XMLHttpRequest();
     var self = this;
     xhr.open("POST", "https://us-central1-koverholt-apps-304316.cloudfunctions.net/name-popularity");
