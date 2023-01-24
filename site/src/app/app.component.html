@@ -10,9 +10,11 @@
     </div>
   </header>
 
+  <div class="loader" *ngIf="!formatted_name_sum"></div>
+
   <main role="main" class="inner cover">
 
-    <div id="app">
+    <div id="app" *ngIf="formatted_name_sum">
       <h4>There have been {{ formatted_name_sum }} people named {{ input_name }}</h4>
       <br>
       <h4>{{ input_name }}'s most popular year was {{ top_year }}</h4>
