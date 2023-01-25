@@ -4,8 +4,8 @@
 
 <mat-spinner *ngIf="!formatted_name_sum"></mat-spinner>
 
-<mat-grid-list cols="1" rowHeight="15:1" *ngIf="formatted_name_sum">
-  <mat-grid-tile>
+<mat-grid-list cols="1" rowHeight="10vh" *ngIf="formatted_name_sum">
+  <mat-grid-tile style="padding: 10px;">
     <form action="/" method="GET">
       <mat-form-field class="example-full-width">
         <mat-label>Enter a name</mat-label>
@@ -13,14 +13,12 @@
       </mat-form-field>
     </form>
   </mat-grid-tile>
-  <mat-grid-tile>
+  <mat-grid-tile style="text-align: center;">
     <h2>There have been {{ formatted_name_sum }} people named {{ input_name }}</h2>
   </mat-grid-tile>
-  <mat-grid-tile>
+  <mat-grid-tile style="text-align: center;">
     <h2>{{ input_name }}'s most popular year was {{ top_year }}</h2>
   </mat-grid-tile>
 </mat-grid-list>
 
-<mat-card>
-  <mat-card-content><div id="chart"></div></mat-card-content>
-</mat-card>
+<div id="chart"></div>
