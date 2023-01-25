@@ -1,30 +1,26 @@
-<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-  <header class="masthead mb-auto">
-    <div class="inner">
-      <h3 class="masthead-brand">Name Popularity</h3>
-      <nav class="nav nav-masthead justify-content-center">
-        <form action="/" method="GET">
-          <input class="form-control" type="search" name="name" placeholder="Enter a name">
-        </form>
-      </nav>
-    </div>
-  </header>
+<mat-toolbar color="primary">
+  <span>Name Popularity</span>
+</mat-toolbar>
 
-  <div class="loader" *ngIf="!formatted_name_sum"></div>
+<mat-spinner *ngIf="!formatted_name_sum"></mat-spinner>
 
-  <main role="main" class="inner cover">
+<mat-grid-list cols="1" rowHeight="15:1" *ngIf="formatted_name_sum">
+  <mat-grid-tile>
+    <form action="/" method="GET">
+      <mat-form-field class="example-full-width">
+        <mat-label>Enter a name</mat-label>
+        <input matInput name="name" [value]="input_name">
+      </mat-form-field>
+    </form>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <h2>There have been {{ formatted_name_sum }} people named {{ input_name }}</h2>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <h2>{{ input_name }}'s most popular year was {{ top_year }}</h2>
+  </mat-grid-tile>
+</mat-grid-list>
 
-    <div id="app" *ngIf="formatted_name_sum">
-      <h4>There have been {{ formatted_name_sum }} people named {{ input_name }}</h4>
-      <br>
-      <h4>{{ input_name }}'s most popular year was {{ top_year }}</h4>
-    </div>
-    <br>
-    <div id="chart"></div>
-  </main>
-
-  <footer class="mastfoot mt-auto">
-    <div class="inner">
-    </div>
-  </footer>
-</div>
+<mat-card>
+  <mat-card-content><div id="chart"></div></mat-card-content>
+</mat-card>

@@ -60,7 +60,7 @@ export class AppComponent {
         plot_bgcolor: "rgba(0,0,0,0)",
         paper_bgcolor: "rgba(51,51,51,0)",
         font: {
-          color: "white",
+          color: "black",
         }
       };
 
