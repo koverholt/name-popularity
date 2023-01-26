@@ -2,7 +2,9 @@
   <span>Name Popularity</span>
 </mat-toolbar>
 
-<mat-spinner *ngIf="!formatted_name_sum"></mat-spinner>
+<div style="height: 100vh;" *ngIf="!formatted_name_sum">
+    <mat-spinner style="position: fixed; top: 30%; left: 45%;"></mat-spinner>
+</div>
 
 <div class="container" *ngIf="formatted_name_sum">
   <div class="row"> </div>
