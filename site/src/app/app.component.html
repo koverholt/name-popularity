@@ -4,7 +4,7 @@
 
 <mat-spinner *ngIf="!formatted_name_sum"></mat-spinner>
 
-<div class="container">
+<div class="container" *ngIf="formatted_name_sum">
   <div class="row"> </div>
   <div class="row">
       <form action="/" method="GET">
