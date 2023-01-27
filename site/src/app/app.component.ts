@@ -69,8 +69,6 @@ export class AppComponent {
       };
 
       Plotly.newPlot("chart", data, layout, config);
-
     };
-
   }
 }

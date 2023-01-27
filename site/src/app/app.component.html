@@ -1,27 +1,36 @@
-<mat-toolbar color="primary">
-  <span>Name Popularity</span>
-</mat-toolbar>
+<section class="hero is-small is-primary">
+  <div class="hero-body">
+    <p class="title is-size-4-mobile">
+      Name Popularity
+    </p>
+    <p class="subtitle is-size-6-mobile">
+      Search for the popularity of a name over the years
+    </p>
+  </div>
+</section>
 
-<div style="height: 100vh;" *ngIf="!formatted_name_sum">
-    <mat-spinner style="position: fixed; top: 30%; left: 45%;"></mat-spinner>
+<div *ngIf="!formatted_name_sum">
+  <progress class="progress is-medium" max="100"></progress>
 </div>
 
-<div class="container" *ngIf="formatted_name_sum">
-  <div class="row"> </div>
-  <div class="row">
+<section class="section">
+  <div class="columns" *ngIf="formatted_name_sum">
+    <div class="column is-one-third">
       <form action="/" method="GET">
-        <mat-form-field class="example-full-width">
-          <mat-label>Enter a name</mat-label>
-          <input matInput name="name" [value]="input_name">
-        </mat-form-field>
+        <label class="label">Enter a name</label>
+        <input class="input is-medium" name="name" [value]="input_name" placeholder="Enter a name">
       </form>
+    </div>
+    <div class="column has-text-centered">
+      <div class="card" >
+        <div class="card-content">
+          <p class="is-size-4">There have been <strong>{{ formatted_name_sum }}</strong> people named <em>{{ input_name }}</em></p>
+          <br />
+          <p class="is-size-4"><em>{{ input_name }}</em>'s most popular year was <strong>{{ top_year }}</strong></p>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="row">
-      <h2>There have been {{ formatted_name_sum }} people named {{ input_name }}</h2>
-  </div>
-  <div class="row">
-      <h2>{{ input_name }}'s most popular year was {{ top_year }}</h2>
-  </div>
-</div>
+</section>
 
 <div id="chart"></div>
