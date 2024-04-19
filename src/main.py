@@ -37,6 +37,7 @@ def get_name_info(input_name):
 
     return result
 
+
 @app.post("/")
 async def get_name_popularity(request: Request):
     request_json = await request.json()
