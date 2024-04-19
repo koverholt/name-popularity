@@ -25,7 +25,7 @@ export class AppComponent {
     var input = { "name": input_name };
     var xhr = new XMLHttpRequest();
     var self = this;
-    xhr.open("POST", "https://us-central1-koverholt-apps-304316.cloudfunctions.net/name-popularity");
+    xhr.open("POST", "https://name-popularity-67ugd5bjtq-uc.a.run.app");
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(JSON.stringify(input));
 

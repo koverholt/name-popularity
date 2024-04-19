@@ -30,6 +30,6 @@ for year in range(min_year, max_year+1):
     df_new = pd.read_csv(path, names=columns)
     df_new["year"] = year
     df_new["year"] = df_new["year"].astype(str)
-    df = df.append(df_new, ignore_index=True)
+    df = df._append(df_new, ignore_index=True)
 
 df.to_csv("data.csv", index=False)

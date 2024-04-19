@@ -1,6 +1,9 @@
 import pandas as pd
+from fastapi import FastAPI, Request
 
 df = pd.read_csv("https://storage.googleapis.com/name-popularity/data.csv")
+
+app = FastAPI()
 
 def get_name_info(input_name):
     name_match = df[df["name"] == input_name]
@@ -26,33 +29,9 @@ def get_name_info(input_name):
 
     return result
 
-def apply(request):
-    """Responds to any HTTP request.
-    Args:
-        request (flask.Request): HTTP request object.
-    Returns:
-        The response text or any set of values that can be turned into a
-        Response object using
-        `make_response <http://flask.pocoo.org/docs/1.0/api/#flask.Flask.make_response>`.
-    """
-
-    if request.method == 'OPTIONS':
-        headers = {
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'GET',
-            'Access-Control-Allow-Headers': 'Content-Type',
-            'Access-Control-Max-Age': '3600'
-        }
-        return ('', 204, headers)
-
-    headers = {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, POST',
-        'Access-Control-Allow-Headers': 'Content-Type'
-    }
-
-    request_json = request.get_json(silent=True)
-    input_name = request_json.get("name", "Kristopher")
-    input_name = input_name.title()
+@app.post("/")
+async def get_name_popularity(request: Request):
+    request_json = await request.json()
+    input_name = request_json.get("name", "Kristopher").title()
     result = get_name_info(input_name)
-    return (result, 200, headers)
+    return result
