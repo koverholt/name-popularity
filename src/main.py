@@ -1,9 +1,17 @@
 import pandas as pd
 from fastapi import FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
 
 df = pd.read_csv("https://storage.googleapis.com/name-popularity/data.csv")
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
 
 def get_name_info(input_name):
     name_match = df[df["name"] == input_name]
